@@ -108,7 +108,7 @@ function readFromLocalStorage(key) {
         // Если данных нет, возвращаем пустой объект
         if (serializedData === null) {
             console.warn(`Данных по ключу "${key}" в локальном хранилище не найдено.`);
-            return {};
+            return [];
         }
 
         // Преобразуем строку в объект перед возвратом
@@ -117,6 +117,6 @@ function readFromLocalStorage(key) {
         return data;
     } catch (error) {
         console.error('Ошибка при чтении данных из локального хранилища:', error);
-        return {};
+        return [];
     }
 }

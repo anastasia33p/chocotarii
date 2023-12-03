@@ -64,7 +64,7 @@ function showProductCard(cardId) {
                         <h2>${selectedProduct.name}</h2>
                         <img src="${selectedProduct.image}" alt="${selectedProduct.name}">
                         <p>${selectedProduct.text}</p>
-                        <button>Добавить в корзину</button>
+                        <button id="addToCart">Добавить в корзину</button>
                     `;
 
                 // Отображаем карточку
@@ -101,7 +101,6 @@ let idArray = readFromLocalStorage('cart');
 const [categoryIndex, productIndex] = cardId.split('-');
 const prodIndex = parseInt(productIndex, 10)-1;
 const catIndex = parseInt(categoryIndex, 10)-1;
-idArray.push({categoryIndexArr: catIndex,productIndexArr: prodIndex})
 categories[catIndex].forEach(function(card, i) {
     let cardElement = document.createElement('div');
     cardElement.className = 'card';
@@ -144,7 +143,7 @@ function readFromLocalStorage(key) {
     }
 }
 
-addToLocalStorage("cart", idArray);
+
 function listener(){
     const productListDiv = document.querySelectorAll('.card');
 
@@ -159,6 +158,12 @@ function listener(){
         });
 
     });}
-
 showProductCard(paramValue);
+
+let addButton= document.getElementById('addToCart');
+addButton.addEventListener('click',function (){
+    idArray.push({categoryIndexArr: catIndex,productIndexArr: prodIndex})
+    addToLocalStorage("cart", idArray);
+});
+
 listener();
